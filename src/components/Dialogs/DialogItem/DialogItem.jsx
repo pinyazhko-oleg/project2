@@ -7,6 +7,9 @@ const DialogItem =(props) => {
 
   return (
     <div className={s.dialog + ' ' + s.active}>
+      <img src=
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSIHvVBCjR88LrWWuAiQaui6tx5I0rK7oT8mpX_UuMIVYtKhiAh'
+      alt=''/>
       <NavLink to={path}>{props.name}</NavLink>
     </div>
   )
