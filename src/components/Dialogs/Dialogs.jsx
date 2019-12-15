@@ -19,7 +19,7 @@ const Dialogs = (props) => {
   //   //props.addMessage();
   //   props.dispatch({type: 'ADD-MESSAGE'});
   // }
-    let addMessage = () => {
+    let sendMessage = () => {
       props.store.dispatch(sendMessageCreator());
     }
 
@@ -28,7 +28,7 @@ const Dialogs = (props) => {
   //   //props.updateNewMessageText(text);
   //   props.dispatch({type: 'UPDATE-NEW-MESSAGE-TEXT', newText: text});
   // }
-  let onMessageChange = (e) => {
+  let onSendMessageChange = (e) => {
     let body = e.target.value;
     props.store.dispatch(updateNewMessageBodyCreator(body));
   }
@@ -44,11 +44,11 @@ const Dialogs = (props) => {
           <div >
             <div>
               <textarea placeholder='Enter your message'
-                        onChange={onMessageChange}
+                        onChange={onSendMessageChange}
                         value={newMessageBody}/>
             </div>
             <div>
-              <button onClick={addMessage}>Send</button>
+              <button onClick={sendMessage}>Send</button>
             </div>
           </div>
         </div>
