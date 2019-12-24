@@ -16,6 +16,11 @@ const Navbar = () => {
           return location.pathname === '/dialogs'}} activeClassName={s.activeLink}
           >Messages</NavLink>
       </div>
+      <div className={`${s.item} ${s.active}`}>
+        <NavLink to="/users" isActive={(match, location) => {
+          return location.pathname === '/users'}} activeClassName={s.activeLink}
+          >Users</NavLink>
+      </div>
       <div className={s.item}>
         <a>News</a>
       </div>
