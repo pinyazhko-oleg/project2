@@ -22,13 +22,19 @@ const Navbar = () => {
           >Users</NavLink>
       </div>
       <div className={s.item}>
-        <a>News</a>
+        <NavLink to="/news" isActive={(match, location) => {
+          return location.pathname === '/news'}} activeClassName={s.activeLink}
+          >News</NavLink>
       </div>
       <div className={s.item}>
-        <a>Music</a>
+        <NavLink to="/music" isActive={(match, location) => {
+          return location.pathname === '/music'}} activeClassName={s.activeLink}
+          >Music</NavLink>
       </div>
       <div className={s.item}>
-        <a>Settings</a>
+        <NavLink to="/settings" isActive={(match, location) => {
+          return location.pathname === '/settings'}} activeClassName={s.activeLink}
+          >Settings</NavLink>
       </div>
     </nav>
   );
