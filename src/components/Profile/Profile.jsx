@@ -1,7 +1,7 @@
 import React from 'react';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import Preloader from '../common/Preloader/Preoader';
+import Preloader from '../common/Preloader/Preloader';
 
 const Profile = (props) => {
 
