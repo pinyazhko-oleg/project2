@@ -31,6 +31,6 @@ class ProfileContainer extends React.Component {
 
     export default compose (
       connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),
-      withRouter,
+      withRouter
       //withAuthRedirect
     ) (ProfileContainer);
