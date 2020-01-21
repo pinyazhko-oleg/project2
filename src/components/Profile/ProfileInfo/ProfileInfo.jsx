@@ -1,29 +1,24 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
-//import Preloader from '../../common/Preloader/Preloader';
 
-const ProfileInfo = (props) => {
+const ProfileInfo = ({profile, status, updateStatus}) => {
 
-  // if (!props.profile){
+  // if (!profile){
   //   return <Preloader />
   // }
 
   return (
     <div>
-      {// <div>
-      //   <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrRRV2S-HAzHVIfS0EtgfIeWnej05TRN1PqWQCLW44h3NqM9UOtQ&s' alt=""/>
-      // </div>
-    }
       <div className={s.descriptionBlock}>
-        <img src={props.profile.photos.large} alt=""/>
+        <img src={profile.photos.large} alt=""/>
         <div>
-          Name: {props.profile.fullName}
+          Name: {profile.fullName}
         </div>
         <div>
-          ID: {props.profile.userId}
+          ID: {profile.userId}
         </div>
-        <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+        <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
       </div>
     </div>
   );
