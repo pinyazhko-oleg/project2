@@ -11,6 +11,9 @@ import {withRouter} from 'react-router-dom';
 import {initializeApp} from './redux/app-reducer';
 import Preloader from './components/common/Preloader/Preloader';
 import {withSuspense} from './hoc/withSuspense';
+import store from './redux/redux-store';
+import {BrowserRouter} from "react-router-dom";
+import {Provider} from 'react-redux';
 
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
@@ -47,4 +50,14 @@ const mapStateToProps = (state) => ({
   initialized: state.app.initialized
 })
 
-export default compose(withRouter, connect(mapStateToProps, {initializeApp}))(App);
+const AppContainer = compose(withRouter, connect(mapStateToProps, {initializeApp}))(App);
+
+const MainApp = (props) => {
+  return  <BrowserRouter>
+            <Provider store={store}>
+              <AppContainer/>
+            </Provider>
+          </BrowserRouter>
+}
+
+export default MainApp;
