@@ -21,7 +21,7 @@ const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsCo
 class App extends React.Component {
 
   catchAllUnhandledErrors = (reason, promise) => {
-    alert('Some error occured');
+    //alert('Some error occured');
     //console.error(promiseRejectionEvent);
   }
 
