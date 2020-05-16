@@ -1,5 +1,5 @@
 import Dialogs from './Dialogs';
-import {sendMessageCreator} from '../../redux/dialogs-reducer';
+import {removeMessageCreator, sendMessageCreator} from '../../redux/dialogs-reducer';
 import {connect} from 'react-redux';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import {compose} from 'redux';
@@ -15,6 +15,9 @@ let mapDispatchToProps = (dispatch) => {
   return {
     sendMessage: (newMessageBody) => {
       dispatch(sendMessageCreator(newMessageBody));
+    },
+    removeMessage: (id) => {
+      dispatch(removeMessageCreator(id));
     }
   }
 }

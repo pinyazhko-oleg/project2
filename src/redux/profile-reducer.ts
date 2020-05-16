@@ -26,6 +26,7 @@ export type InitialStateType = typeof initialState
 const profileReducer = (state = initialState, action: any): InitialStateType => {
 
     switch (action.type) {
+
         case ADD_POST:
             let newPost = {
                 id: 5,
@@ -50,7 +51,7 @@ const profileReducer = (state = initialState, action: any): InitialStateType => 
         case DELETE_POST:
             return {
                 ...state,
-                posts: state.posts.filter(p => p.id !== action.postId)
+                posts: state.posts.filter(p => p.id !== action.id)
             }
         case SAVE_PHOTO_SUCCESS:
             return {
@@ -85,9 +86,9 @@ export const setStatus = (status: string): SetStatusActionType => ({type: SET_ST
 
 type DeletePostActionType = {
     type: typeof DELETE_POST
-    postId: number
+    id: number
 }
-export const deletePost = (postId: number): DeletePostActionType => ({type: DELETE_POST, postId})
+export const deletePostActionCreator = (id: number): DeletePostActionType => ({type: DELETE_POST, id})
 
 type SavePhotoSuccessActionType = {
     type: typeof SAVE_PHOTO_SUCCESS

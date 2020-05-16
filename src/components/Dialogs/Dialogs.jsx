@@ -8,11 +8,11 @@ import {Textarea} from '../common/FormsControls/FormsControls';
 import {maxLengthCreator, required} from '../../utils/validators/validators';
 
 const Dialogs = (props) => {
-
+//debugger
   let state = props.dialogsPage;
 
   let dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id} />);
-  let messagesElements = state.messages.map(m => <Message message={m.message} key={m.id}/>);
+  let messagesElements = state.messages.map(m => <Message message={m.message} id={m.id} key={m.id} removeMessage={props.removeMessage}/>);
 
   let addNewMessage = (values) => {
     props.sendMessage(values.newMessageBody);

@@ -84,9 +84,9 @@ export const usersAPI = {
     messages: Array<string>
   }
 
-  type SecurityApiType = {
+  /*type SecurityApiType = {
     url: string
-  }
+  }*/
 
   export const authAPI = {
     me() {
@@ -105,6 +105,6 @@ export const usersAPI = {
 
   export const securityAPI = {
     getCaptchaUrl() {
-      return instance.get<SecurityApiType>(`security/get-captcha-url`).then(res => res.data);
+      return instance.get(`security/get-captcha-url`).then(res => res.data);
     }
   }

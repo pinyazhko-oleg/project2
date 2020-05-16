@@ -1,4 +1,5 @@
 const SEND_MESSAGE = 'SEND_MESSAGE';
+const REMOVE_MESSAGE = 'REMOVE MESSAGE';
 
 type DialogType = {
     id: number
@@ -41,6 +42,11 @@ const dialogsReducer = (state = initialState, action: any): InitialStateType => 
         ...state,
         messages: [...state.messages, {id: 7, message: body}]
       }
+      case REMOVE_MESSAGE:
+          return {
+              ...state,
+              messages: state.messages.filter(m => m.id !== action.id)
+          }
     default:
       return state;
   }
@@ -51,7 +57,14 @@ type SendMessageCreatorActionType = {
     newMessageBody: string
 }
 
-export const sendMessageCreator = (newMessageBody: string): SendMessageCreatorActionType => ({type: SEND_MESSAGE, newMessageBody})
+export const sendMessageCreator = (newMessageBody: string): SendMessageCreatorActionType => ({type: SEND_MESSAGE,
+                                                                                                newMessageBody});
+type RemoveMessageCreatorActionType = {
+    type: typeof REMOVE_MESSAGE
+    id: number
+}
+
+export const removeMessageCreator = (id: number): RemoveMessageCreatorActionType => ({type: REMOVE_MESSAGE, id});
 // export const updateNewMessageBodyCreator = (body) => ({
 //       type: UPDATE_NEW_MESSAGE_BODY, body: body})
 

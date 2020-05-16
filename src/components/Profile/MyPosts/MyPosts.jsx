@@ -11,11 +11,11 @@ const MyPosts = React.memo(props => {
   let postsElements =
       [...props.posts]
       .reverse()
-      .map(p => <Post post={p.post} likesCount={p.likesCount} key={p.id}/>);
+      .map(p => <Post post={p.post} likesCount={p.likesCount} id={p.id} key={p.id} deletePost={props.deletePost}/>);
 
   let addNewPost = (values) => {
     props.addPost(values.newPostText);
-  }
+  };
 
   return (
       <div className={s.postsBlock}>
