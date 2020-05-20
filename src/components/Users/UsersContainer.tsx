@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Users from './Users';
 import {
-    follow, unfollow, setCurrentPage, requestUsers
+    follow, unfollow, requestUsers
 } from '../../redux/users-reducer';
 import Preloader from '../common/Preloader/Preloader';
 import {compose} from 'redux';
@@ -23,7 +23,7 @@ type MapStatePropsType = {
 }
 
 type MapDispatchPropsType = {
-    setCurrentPage: (pageNumber: number) => void
+    //setCurrentPage: (pageNumber: number) => void
     getUsers: (currentPage: number, pageSize: number) => void
     follow: (userId: number) => void
     unfollow: (userId: number) => void
@@ -43,7 +43,7 @@ class UsersContainer extends React.Component<PropsType> {
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.setCurrentPage(pageNumber);
+        //this.props.setCurrentPage(pageNumber);
         const {pageSize} = this.props;
         this.props.getUsers(pageNumber, pageSize);
     }
@@ -93,6 +93,6 @@ export default compose(
     //withAuthRedirect,
     //TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = DefaultRootState
     connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps, {
-        follow, unfollow, setCurrentPage,
+        follow, unfollow,
         getUsers: requestUsers
     }))(UsersContainer);
