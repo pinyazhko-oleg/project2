@@ -1,9 +1,13 @@
 import React from 'react';
 import s from './../Dialogs.module.css';
 
-const Message = (props) => {
-    //debugger
+type PropsType = {
+    message: string
+    id: number
+    removeMessage: (id: number) => void
+}
 
+const Message: React.FC<PropsType> = (props) => {
   return (
       <div className={s.dialog}>
         <img src=
@@ -15,6 +19,6 @@ const Message = (props) => {
         </div>
       </div>
   )
-}
+};
 
 export default Message;

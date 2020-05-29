@@ -1,5 +1,7 @@
-const SEND_MESSAGE = 'SEND_MESSAGE';
-const REMOVE_MESSAGE = 'REMOVE MESSAGE';
+import {InferActionsTypes} from "./redux-store";
+
+const SEND_MESSAGE = 'DIALOGS/SEND_MESSAGE';
+const REMOVE_MESSAGE = 'DIALOGS/REMOVE_MESSAGE';
 
 type DialogType = {
     id: number
@@ -31,9 +33,8 @@ const initialState = {
     ] as Array<DialogType>
 };
 
-export type InitialStateType = typeof initialState
 
-const dialogsReducer = (state = initialState, action: any): InitialStateType => {
+const dialogsReducer = (state = initialState, action: ActionsType): InitialStateType => {
 
   switch (action.type) {
     case SEND_MESSAGE:
@@ -41,32 +42,23 @@ const dialogsReducer = (state = initialState, action: any): InitialStateType => 
       return {
         ...state,
         messages: [...state.messages, {id: 7, message: body}]
-      }
+      };
       case REMOVE_MESSAGE:
           return {
               ...state,
               messages: state.messages.filter(m => m.id !== action.id)
-          }
+          };
     default:
       return state;
   }
-}
+};
 
-type SendMessageCreatorActionType = {
-    type: typeof SEND_MESSAGE
-    newMessageBody: string
-}
+export const actions = {
+    sendMessage: (newMessageBody: string) => ({type: SEND_MESSAGE, newMessageBody} as const),
+    removeMessage: (id: number) => ({type: REMOVE_MESSAGE, id} as const)
+};
 
-export const sendMessageCreator = (newMessageBody: string): SendMessageCreatorActionType => ({type: SEND_MESSAGE,
-                                                                                                newMessageBody});
-type RemoveMessageCreatorActionType = {
-    type: typeof REMOVE_MESSAGE
-    id: number
-}
-
-export const removeMessageCreator = (id: number): RemoveMessageCreatorActionType => ({type: REMOVE_MESSAGE, id});
-// export const updateNewMessageBodyCreator = (body) => ({
-//       type: UPDATE_NEW_MESSAGE_BODY, body: body})
-
+export type InitialStateType = typeof initialState
+type ActionsType = InferActionsTypes<typeof actions>
 
 export default dialogsReducer;

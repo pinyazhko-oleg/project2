@@ -1,11 +1,17 @@
 import React from 'react';
 import s from './Post.module.css';
 
-const Post = (props) => {
-//debugger;
+type PropsType = {
+    post: string
+    id: number
+    likesCount: number
+    deletePost: (id: number) => void
+}
+
+const Post: React.FC<PropsType> = (props) => {
     let removePost = () => {
         props.deletePost(props.id)
-    }
+    };
     return (
         <div className={s.item}>
             <img src=
@@ -18,7 +24,7 @@ const Post = (props) => {
                 <button onClick={removePost}>Remove</button>
             </div>
         </div>
-    );
-}
+    )
+};
 
 export default Post;

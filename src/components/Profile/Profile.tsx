@@ -2,8 +2,18 @@ import React from 'react';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import Preloader from '../common/Preloader/Preloader';
+import {ProfileType} from "../../types/types";
 
-const Profile = (props) => {
+type PropsType = {
+    profile: ProfileType | null
+    status: string
+    updateStatus: (status: string) => void
+    isOwner: boolean
+    savePhoto: (file: File) => void
+    saveProfile: (profile: ProfileType) => Promise<any>
+}
+
+const Profile: React.FC<PropsType> = (props) => {
 
   if (!props.profile) {
     return <Preloader />
@@ -19,7 +29,7 @@ const Profile = (props) => {
                     saveProfile={props.saveProfile}/>
       <MyPostsContainer />
     </div>
-  );
-}
+  )
+};
 
 export default Profile;
