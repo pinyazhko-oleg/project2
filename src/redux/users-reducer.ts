@@ -3,6 +3,7 @@ import {UserType} from "../types/types";
 import {BaseThunkType, InferActionsTypes} from "./redux-store";
 import {Dispatch} from "redux";
 import {usersAPI} from "../api/users-api";
+import {APIResponseType} from "../api/api";
 
 const FOLLOW = 'USERS/FOLLOW';
 const UNFOLLOW = 'USERS/UNFOLLOW';
@@ -84,6 +85,7 @@ export const actions = {
 export const requestUsers = (currentPage: number,
                              pageSize: number): ThunkType => {
   return async (dispatch) => {
+      dispatch(actions.toggleIsFetching(true));
       dispatch(actions.setCurrentPage(currentPage));
 
       let data = await usersAPI.getUsers(currentPage, pageSize);
@@ -96,10 +98,10 @@ export const requestUsers = (currentPage: number,
 const _followUnfollowFlow = async (dispatch: Dispatch<ActionsTypes>,
                                    userId: number,
                                    actionCreator: (userId: number) => ActionsTypes,
-                                   apiMethod: any) => {
+                                   apiMethod: (userId: number) => Promise<APIResponseType>) => {
   dispatch(actions.toggleFollowingProgress(true, userId));
   let response = await apiMethod(userId);
-    if (response.data.resultCode === 0) {
+    if (response.resultCode === 0) {
       dispatch(actionCreator(userId));
     }
     dispatch(actions.toggleFollowingProgress(false, userId));
@@ -109,7 +111,7 @@ export const follow = (userId: number): ThunkType => {
   return async (dispatch) => {
     let apiMethod = usersAPI.follow.bind(usersAPI);
     let actionCreator = actions.followSuccess;
-    _followUnfollowFlow(dispatch, userId, actionCreator, apiMethod);
+    await _followUnfollowFlow(dispatch, userId, actionCreator, apiMethod);
   }
 };
 
@@ -117,7 +119,7 @@ export const unfollow = (userId: number): ThunkType => {
   return async (dispatch) => {
     let apiMethod = usersAPI.unfollow.bind(usersAPI);
     let actionCreator = actions.unfollowSuccess;
-    _followUnfollowFlow(dispatch, userId, actionCreator, apiMethod);
+    await _followUnfollowFlow(dispatch, userId, actionCreator, apiMethod);
   }
 };
 

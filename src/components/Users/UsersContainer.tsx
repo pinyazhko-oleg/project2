@@ -1,15 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Users from './Users';
-import {
-    follow, unfollow, requestUsers
-} from '../../redux/users-reducer';
+import {follow, unfollow, requestUsers} from '../../redux/users-reducer';
 import Preloader from '../common/Preloader/Preloader';
 import {compose} from 'redux';
-import {
-    getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching,
-    getFollowingInProgress
-} from '../../redux/users-selectors';
+import {getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress} from '../../redux/users-selectors';
 import {UserType} from "../../types/types";
 import {AppStateType} from "../../redux/redux-store";
 
@@ -46,7 +41,7 @@ class UsersContainer extends React.Component<PropsType> {
         //this.props.setCurrentPage(pageNumber);
         const {pageSize} = this.props;
         this.props.getUsers(pageNumber, pageSize);
-    }
+    };
 
     render() {
 
@@ -87,7 +82,7 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType  => {
         isFetching: getIsFetching(state),
         followingInProgress: getFollowingInProgress(state)
     }
-}
+};
 
 export default compose(
     //withAuthRedirect,
